@@ -1,4 +1,5 @@
 # parse-wikitext
+[![NPM version](https://img.shields.io/npm/v/parse-wikitext.svg)](http://npmjs.com/package/parse-wikitext)
 
 A simple wikitext parser in node.js
 
@@ -44,3 +45,9 @@ the content of each section is in the key 'content'
 * template : the name of the template
 * namedParts : an object mapping the named parts to their value
 * simpleParts : an array of simple parts
+
+## History
+
+### 0.1.0
+
+* basic functionality, import from minecraft-data
