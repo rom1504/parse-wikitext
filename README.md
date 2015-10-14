@@ -1,5 +1,6 @@
 # parse-wikitext
 [![NPM version](https://img.shields.io/npm/v/parse-wikitext.svg)](http://npmjs.com/package/parse-wikitext)
+[![Build Status](https://img.shields.io/circleci/project/rom1504/parse-wikitext/master.svg)](https://circleci.com/gh/rom1504/parse-wikitext)
 
 A simple wikitext parser in node.js
 
