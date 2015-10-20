@@ -69,6 +69,7 @@ WikiTextParser.prototype.getFixedArticle=function(title,date,cb)
     cb(new Error("empty title"));
     return;
   }
+  var self=this;
   this.client.api.call({
     action:"query",
     prop: 'revisions',
@@ -85,7 +86,57 @@ WikiTextParser.prototype.getFixedArticle=function(title,date,cb)
       return;
     }
     var pages=data["pages"];
+    if(pages.length==0) {
+      cb(new Error("No page "+title));
+      return;
+    }
     var page=pages[Object.keys(pages)[0]];
+    if(!page["revisions"] || page["revisions"].length==0) {
+      self.getFirstRevision(title,function(err,text,title,timestamp){
+        var redirectPage;
+        if(redirectPage=text.match(/#REDIRECT \[\[(.+)\]\]/i))
+          self.getFixedArticle(redirectPage[1], date, cb);
+        else
+          cb(new Error("No revision of "+title+" before "+date));
+      });
+      return;
+    }
+    var revision=page["revisions"][0];
+    var text=revision["*"];
+    var timestamp=revision.timestamp;
+    title=page["title"];
+    cb(null,text,title,timestamp);
+  });
+};
+
+WikiTextParser.prototype.getFirstRevision=function(title,cb) {
+  if (title == "") {
+    cb(new Error("empty title"));
+    return;
+  }
+  this.client.api.call({
+    action:"query",
+    prop: 'revisions',
+    rvprop: 'content|timestamp',
+    titles:title,
+    rvdir:"newer",
+    rvlimit:1,
+    redirects:true
+  },function(err,data){
+    if (err || !data) {
+      cb(err ? err : new Error("can't get the data of "+title));
+      return;
+    }
+    var pages=data["pages"];
+    if(pages.length==0) {
+      cb(new Error("No page "+title));
+      return;
+    }
+    var page=pages[Object.keys(pages)[0]];
+    if(!page["revisions"] || page["revisions"].length==0) {
+      cb(new Error("No revision of "+title));
+      return;
+    }
     var revision=page["revisions"][0];
     var text=revision["*"];
     var timestamp=revision.timestamp;

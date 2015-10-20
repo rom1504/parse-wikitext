@@ -16,11 +16,20 @@ Create the WikiTextParser object with `wikiserver`
 
 ### WikiTextParser.getFixedArticle(title,date,cb)
 
-get page `title` at the last revision before `date`, cb has two arguments : 
+get page `title` at the last revision before `date`, cb arguments are : 
 
 * err
 * text : the content of the article
 * title : the title of the article (might be different from the argument of getFixedArticle in case of redirection)
+* timestamp : timestamp of the revision
+
+### WikiTextParser.getFirstRevision(title,cb)
+
+get the first revision of `title` cb arguments are : 
+
+* err
+* text : the content of the article
+* title : the title of the article
 * timestamp : timestamp of the revision
 
 ### WikiTextParser.getArticle(title,cb)
