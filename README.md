@@ -68,6 +68,11 @@ the content of each section is in the key 'content'
 
 ## History
 
+### 0.3.0
+
+ * add getFirstRevision
+ * automatically get the previous page if the required page moved in getFixedArticle
+
 ### 0.2.0
  
  * add getFixedArticle to get the last revision of an article before a given date
