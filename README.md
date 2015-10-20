@@ -59,6 +59,10 @@ the content of each section is in the key 'content'
 
 ## History
 
+### 0.2.0
+ 
+ * add getFixedArticle to get the last revision of an article before a given date
+
 ### 0.1.0
 
 * basic functionality, import from minecraft-data
