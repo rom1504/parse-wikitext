@@ -14,12 +14,22 @@ see [example.js](example.js)
 
 Create the WikiTextParser object with `wikiserver`
 
+### WikiTextParser.getFixedArticle(title,date,cb)
+
+get page `title` at the last revision before `date`, cb has two arguments : 
+
+* err
+* text : the content of the article
+* title : the title of the article (might be different from the argument of getFixedArticle in case of redirection)
+* timestamp : timestamp of the revision
+
 ### WikiTextParser.getArticle(title,cb)
 
 get page `title`, cb has two arguments : 
 
 * err
-* data : an array of lines
+* text : the content of the article
+* title : the title of the article (might be different from the argument of getFixedArticle in case of redirection)
 
 ### WikiTextParser.dplQuery(query,cb)
 
@@ -28,9 +38,9 @@ make a dpl `query`, cb has two arguments :
 * err
 * result
 
-### WikiTextParser.pageToSectionObject(data)
+### WikiTextParser.pageToSectionObject(text)
 
-`data` is an array of lines. This function return the article as a tree of sections, 
+`text` is the text of the article. This function return the article as a tree of sections, 
 the content of each section is in the key 'content'
 
 

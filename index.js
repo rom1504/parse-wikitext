@@ -62,6 +62,38 @@ WikiTextParser.prototype.getArticle=function(title,cb) {
   });
 };
 
+// example of date ; 2014-10-11T06:43:53Z
+WikiTextParser.prototype.getFixedArticle=function(title,date,cb)
+{
+  if (title == "") {
+    cb(new Error("empty title"));
+    return;
+  }
+  this.client.api.call({
+    action:"query",
+    prop: 'revisions',
+    rvprop: 'content|timestamp',
+    titles:title,
+    rvstart:date,
+    rvlimit:1,
+    redirects:true
+  },function(err,data){
+    if (err || !data) {
+      //console.log("error in page "+title);
+      //console.error(err);
+      cb(err ? err : new Error("can't get the data of "+title));
+      return;
+    }
+    var pages=data["pages"];
+    var page=pages[Object.keys(pages)[0]];
+    var revision=page["revisions"][0];
+    var text=revision["*"];
+    var timestamp=revision.timestamp;
+    title=page["title"];
+    cb(null,text,title,timestamp);
+  });
+};
+
 // useful ? (see http://minecraft.gamepedia.com/Talk:Crafting#Wiki_source_of_the_recipes)
 WikiTextParser.prototype.dplQuery=function(query,cb)
 {
