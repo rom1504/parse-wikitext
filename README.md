@@ -68,6 +68,10 @@ the content of each section is in the key 'content'
 
 ## History
 
+### 0.3.2
+
+ * fix removing the templates before the infobox
+
 ### 0.3.1
 
  * filter out non-infobox template before the infobox
