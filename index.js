@@ -239,7 +239,7 @@ WikiTextParser.prototype.parseTable = function(sectionLineArray)
 
 WikiTextParser.prototype.parseInfoBox = function(sectionLineArray)
 {
-  sectionLineArray=sectionLineArray.filter(function(line){return !line.toLowerCase().startsWith("{{about") && !line.startsWith("{{split")});
+  sectionLineArray=sectionLineArray.filter(function(line){return !line.match(/^\{\{.*\|/)});
   var text=sectionLineArray.join("");
   var results=this.parseTemplate(text);
   if(results==null) {
