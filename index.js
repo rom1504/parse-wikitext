@@ -237,9 +237,19 @@ WikiTextParser.prototype.parseTable = function(sectionLineArray)
   return array;
 };
 
+function filterAtBeginning(a,f) {
+  var stop=false;
+  return a.filter(function(e){
+    if(stop)
+      return true;
+    stop=f(e);
+    return stop;
+  });
+}
+
 WikiTextParser.prototype.parseInfoBox = function(sectionLineArray)
 {
-  sectionLineArray=sectionLineArray.filter(function(line){return !line.match(/^\{\{.*\|/)});
+  sectionLineArray=filterAtBeginning(sectionLineArray,function(line){return !line.match(/^\{\{.*\|/);});
   var text=sectionLineArray.join("");
   var results=this.parseTemplate(text);
   if(results==null) {
