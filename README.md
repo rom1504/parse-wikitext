@@ -68,6 +68,10 @@ the content of each section is in the key 'content'
 
 ## History
 
+### 0.3.1
+
+ * filter out non-infobox template before the infobox
+
 ### 0.3.0
 
  * add getFirstRevision
