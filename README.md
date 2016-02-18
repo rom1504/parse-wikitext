@@ -68,6 +68,10 @@ the content of each section is in the key 'content'
 
 ## History
 
+### 0.3.3
+
+ * check err in getFirstRevision
+
 ### 0.3.2
 
  * fix removing the templates before the infobox
