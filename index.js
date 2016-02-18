@@ -93,6 +93,8 @@ WikiTextParser.prototype.getFixedArticle=function(title,date,cb)
     var page=pages[Object.keys(pages)[0]];
     if(!page["revisions"] || page["revisions"].length==0) {
       self.getFirstRevision(title,function(err,text,title,timestamp){
+        if(err)
+          return cb(err);
         var redirectPage;
         if(redirectPage=text.match(/#REDIRECT \[\[(.+)\]\]/i))
           self.getFixedArticle(redirectPage[1], date, cb);
