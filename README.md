@@ -68,6 +68,10 @@ the content of each section is in the key 'content'
 
 ## History
 
+### 1.0.0
+
+* update dependencies and add test
+
 ### 0.3.3
 
  * check err in getFirstRevision
