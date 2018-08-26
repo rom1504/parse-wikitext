@@ -1,6 +1,7 @@
 var WikiTextParser = require('../');
 var _ = require('underscore');
 var assert = require("assert");
+const date = "2017-12-28T00:00:00Z";
 
 
 var wikiTextParser = new WikiTextParser('minecraft.gamepedia.com');
@@ -131,4 +132,20 @@ describe("wikitext_parser",function(){
       cb();
     });
   })
+
+
+  it("extract wood infobox",function(done){
+    wikiTextParser.getFixedArticle("Wood", date, function (err, data) {
+      if(err) {
+        done(err)
+        return;
+      }
+      var sectionObject = wikiTextParser.pageToSectionObject(data);
+
+      var infoBox = wikiTextParser.parseInfoBox(sectionObject["content"]);
+      var values = infoBox["values"];
+      console.log(values);
+      done();
+    });
+  });
 });

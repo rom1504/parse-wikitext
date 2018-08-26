@@ -11,11 +11,11 @@
     "url": "git+https://github.com/rom1504/parse-wikitext.git"
   },
   "dependencies": {
-    "nodemw": "~0.7.3"
+    "nodemw": "0.12.1"
   },
   "devDependencies": {
-    "mocha": "~2.2.5",
-    "underscore" : "~1.8.2"
+    "mocha": "^5.2.0",
+    "underscore": "^1.9.1"
   },
   "keywords": [
     "parser",
